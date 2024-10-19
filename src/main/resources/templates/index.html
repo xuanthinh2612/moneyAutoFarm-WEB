@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Tai Xiu Xontroller</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+<!--            padding: 8px;-->
+            text-align: center;
+        }
+
+        .svg-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+    <!-- Favicon-->
+    <meta charset="UTF-8">
+    <title>Control Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<!-- Responsive navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">Tai Xiu Controller</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        </div>
+    </div>
+</nav>
+<!-- Page header with logo and tagline-->
+
+<!-- Page content-->
+<div class="container py-2">
+    <div class="row">
+        <!-- Side widgets-->
+        <div class="col-lg-6">
+            <!-- Search widget-->
+            <div class="card mb-4">
+                <div class="card-header"><h1 class="col-6">SERVER 1</h1></div>
+                <div class="card-body">
+                    <!--                    <div class="text-center my-3 row">-->
+                    <!--                        <h5 class="col-4">Info 1: </h5>-->
+                    <!--                        <h5 class="col-4">Info 1: </h5>-->
+                    <!--                        <h5 class="col-4">Info 1: </h5>-->
+                    <!--                        <h5 class="col-4">Info 1: </h5>-->
+                    <!--                        <h5 class="col-4">Info 1: </h5>-->
+                    <!--                        <h5 class="col-4">Info 1: </h5>-->
+                    <!--                    </div>-->
+                    <div class="row">
+                        <form class="row" action="/changeBetAction" method="post">
+
+                            <div class="col-sm-6 p-2">
+                                <button type="submit" name="startProgram" class="btn btn-outline-success btn-lg">START
+                                    PROGRAM
+                                </button>
+
+                            </div>
+                            <div class="col-sm-6 p-2">
+                                <button type="submit" name="stopProgram" class="btn btn-danger btn-lg">STOP PROGRAM
+                                </button>
+                            </div>
+
+                            <div class="col-sm-6 p-2">
+                                <button type="submit" name="openMiniGame" class="btn btn-primary btn-lg">OPEN MINI
+                                    GAME
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="col-sm-12 p-2">
+                        </div>
+                        <div class="col-sm-12 p-2">
+                        </div>
+                        <form action="/changeBetAction" class="row" th:object="${initValue}">
+                            <div class="col-sm-6 p-2">
+                                <label>BET AMOUNT</label>
+                            </div>
+                            <div class="col-sm-6 py-3">
+                                <label>
+                                    <select th:field="*{betAmount}" class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-2">
+                                <label>Use For Server</label>
+                            </div>
+                            <div class="col-sm-6 p-2">
+                                <label class="w-100">
+                                    <select th:field="*{useFor}" class="form-control">
+                                        <option value="1">Server 1</option>
+                                        <option value="2">Server 2</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-2">
+                                <label>BET IN</label>
+                            </div>
+                            <div class="col-sm-6 p-2">
+                                <label class="w-100">
+                                    <select th:field="*{betIn}" class="form-control">
+                                        <option value="tai">Tai</option>
+                                        <option value="xiu">Xiu</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-2">
+                                <label>BET ROUND</label>
+                            </div>
+                            <div class="col-sm-6 py-3">
+                                <label>
+                                    <select th:field="*{betRound}" class="form-control">
+                                        <option value="1">1 Round</option>
+                                        <option value="2">2 Round</option>
+                                        <option value="3">3 Round</option>
+                                        <option value="5">5 Round</option>
+                                        <option value="10">10 Round</option>
+                                        <option value="15">15 Round (15 min)</option>
+                                        <option value="30">30 Round (30 min)</option>
+                                        <option value="60">60 Round (1 hour)</option>
+                                        <option value="120">120 Round (2 hour)</option>
+                                        <option value="250">250 Round (4 hour)</option>
+                                        <option value="500">500 Round (8 hour)</option>
+                                        <option value="1000">1000 Round (16 hour)</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-2">
+                                <button type="submit" name="startBet" class="btn btn-primary btn-lg">START BETTING
+                                </button>
+                            </div>
+
+                            <div class="col-sm-6 p-2">
+                                <button type="submit" name="stopBet" class="btn btn-primary btn-lg">STOP BETTING
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Side widgets-->
+        <div class="col-lg-6">
+            <!-- Search widget-->
+            <div class="card mb-4">
+                <div class="card-header"><h1 class="col-6">SERVER 1</h1></div>
+                <div class="card-body">
+                    <!--                    <div class="text-center my-3 row">-->
+                    <!--                        <h5 class="col-4">Info 1: </h5>-->
+                    <!--                        <h5 class="col-4">Info 1: </h5>-->
+                    <!--                        <h5 class="col-4">Info 1: </h5>-->
+                    <!--                        <h5 class="col-4">Info 1: </h5>-->
+                    <!--                        <h5 class="col-4">Info 1: </h5>-->
+                    <!--                        <h5 class="col-4">Info 1: </h5>-->
+                    <!--                    </div>-->
+                    <div class="row">
+                        <form class="row" action="/changeBetAction" method="post">
+
+                            <div class="col-sm-6 p-2">
+                                <button type="submit" name="startProgram" class="btn btn-outline-success btn-lg">START
+                                    PROGRAM
+                                </button>
+
+                            </div>
+                            <div class="col-sm-6 p-2">
+                                <button type="submit" name="stopProgram" class="btn btn-danger btn-lg">STOP PROGRAM
+                                </button>
+                            </div>
+
+                            <div class="col-sm-6 p-2">
+                                <button type="submit" name="openMiniGame" class="btn btn-primary btn-lg">OPEN MINI
+                                    GAME
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="col-sm-12 p-2">
+                        </div>
+                        <div class="col-sm-12 p-2">
+                        </div>
+                        <form action="/changeBetAction" class="row" th:object="${initValue}">
+                            <div class="col-sm-6 p-2">
+                                <label>BET AMOUNT</label>
+                            </div>
+                            <div class="col-sm-6 py-3">
+                                <label>
+                                    <select th:field="*{betAmount}" class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-2">
+                                <label>Use For Server</label>
+                            </div>
+                            <div class="col-sm-6 p-2">
+                                <label class="w-100">
+                                    <select th:field="*{useFor}" class="form-control">
+                                        <option value="1">Server 1</option>
+                                        <option value="2">Server 2</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-2">
+                                <label>BET IN</label>
+                            </div>
+                            <div class="col-sm-6 p-2">
+                                <label class="w-100">
+                                    <select th:field="*{betIn}" class="form-control">
+                                        <option value="tai">Tai</option>
+                                        <option value="xiu">Xiu</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-2">
+                                <label>BET ROUND</label>
+                            </div>
+                            <div class="col-sm-6 py-3">
+                                <label>
+                                    <select th:field="*{betRound}" class="form-control">
+                                        <option value="1">1 Round</option>
+                                        <option value="2">2 Round</option>
+                                        <option value="3">3 Round</option>
+                                        <option value="5">5 Round</option>
+                                        <option value="10">10 Round</option>
+                                        <option value="15">15 Round (15 min)</option>
+                                        <option value="30">30 Round (30 min)</option>
+                                        <option value="60">60 Round (1 hour)</option>
+                                        <option value="120">120 Round (2 hour)</option>
+                                        <option value="250">250 Round (4 hour)</option>
+                                        <option value="500">500 Round (8 hour)</option>
+                                        <option value="1000">1000 Round (16 hour)</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-2">
+                                <button type="submit" name="startBet" class="btn btn-primary btn-lg">START BETTING
+                                </button>
+                            </div>
+
+                            <div class="col-sm-6 p-2">
+                                <button type="submit" name="stopBet" class="btn btn-primary btn-lg">STOP BETTING
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <p>
+                Tai:
+                <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 512 512" width="5" height="5">
+                    <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/>
+                </svg>
+            </p>
+            <p>
+                Xỉu:
+                <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 512 512">
+                    <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/>
+                </svg>
+            </p>
+        </div>
+        <table class="table table-bordered">
+            <tbody>
+            <tr th:if="${tableList != null }" th:each="table : ${tableList}" class="m-2">
+                <td th:if="${table != null }" th:each="column : ${table}" style="height: 150px; width: 30px">
+                    <span th:each="cell : ${column}">
+                        <svg th:if="${cell.getBetResult == 'tai'}" class="svg-icon" xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 512 512">
+                            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/>
+                        </svg>
+                        <svg th:if="${cell.getBetResult == 'xiu'}" class="svg-icon" xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 512 512">
+                            <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/>
+                        </svg>
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Footer-->
+<footer class="py-2 my-2 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white">Tai Xiu Master</p></div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+</body>
+</html>
