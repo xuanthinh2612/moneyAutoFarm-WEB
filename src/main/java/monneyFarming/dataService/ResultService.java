@@ -36,7 +36,7 @@ public class ResultService {
         List<Result> totalResult = findByDate(date);
 
         int COLUM_MAX_SIZE = 5;
-        int MAX_COLUM_PER_TABLE = 30;
+        int MAX_COLUM_PER_TABLE = 50;
         List<List<Result>> columList = new ArrayList<>();
         List<List<List<Result>>> tableList = new ArrayList<>();
 
@@ -51,7 +51,9 @@ public class ResultService {
                     i--;
                     break;
                 }
-                i++;
+                if (j != COLUM_MAX_SIZE - 1) {
+                    i++;
+                }
                 if (i >= totalResult.size()) {
                     break;
                 }
