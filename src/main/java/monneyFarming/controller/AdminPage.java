@@ -7,11 +7,11 @@ import monneyFarming.model.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -30,12 +30,30 @@ public class AdminPage {
     }
 
     @ModelAttribute("tableList")
-    public List<List<List<Result>>> getResultList() {
-        return handleListResult();
+    public List<List<List<Result>>> getTableList() {
+        String today = selectedDate();
+        return resultService.handleListResult(today);
     }
 
-    @GetMapping("")
+    @ModelAttribute("selectedDate")
+    public String selectedDate() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        // default is today date
+        return formatter.format(new Date());
+    }
+
+    @GetMapping("/")
     public String homePage() {
+        return "index";
+    }
+
+    @PostMapping("/")
+    public String homePage(@RequestParam("date") String date, Model model) {
+        if (!ObjectUtils.isEmpty(date)) {
+            model.addAttribute("selectedDate", date);
+            model.addAttribute("tableList", resultService.handleListResult(date));
+        }
+
         return "index";
     }
 
@@ -81,45 +99,6 @@ public class AdminPage {
         initValueService.save(initValue);
 
         return "redirect:/";
-    }
-
-
-    private List<List<List<Result>>> handleListResult() {
-
-        int COLUM_MAX_SIZE = 5;
-        int MAX_COLUM_PER_TABLE = 30;
-        List<Result> totalResult = resultService.findAllLimitBy(10000000L);
-        List<List<Result>> columList = new ArrayList<>();
-        List<List<List<Result>>> tableList = new ArrayList<>();
-
-        for (int i = 0; i < totalResult.size(); i++) {
-            List<Result> column = new ArrayList<>();
-            for (int j = 0; j < COLUM_MAX_SIZE; j++) {
-                if (column.size() == 0) {
-                    column.add(totalResult.get(i));
-                } else if (column.get(0).getBetResult().equals(totalResult.get(i).getBetResult())) {
-                    column.add(totalResult.get(i));
-                } else {
-                    i--;
-                    break;
-                }
-                i++;
-                if (i >= totalResult.size()) {
-                    break;
-                }
-            }
-            if (columList.size() < MAX_COLUM_PER_TABLE) {
-                columList.add(column);
-            } else {
-                tableList.add(columList);
-                columList = new ArrayList<>();
-            }
-        }
-        if (!columList.isEmpty()) {
-            tableList.add(columList);
-        }
-
-        return tableList;
     }
 
 
