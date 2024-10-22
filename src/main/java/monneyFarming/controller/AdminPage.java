@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -29,17 +31,29 @@ public class AdminPage {
         return initValueService.findFirstValue();
     }
 
-    @ModelAttribute("tableList")
-    public List<List<List<Result>>> getTableList() {
-        String today = selectedDate();
-        return resultService.handleListResult(today);
-    }
-
     @ModelAttribute("selectedDate")
-    public String selectedDate() {
+    public String selectedDateDefault() {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         // default is today date
         return formatter.format(new Date());
+    }
+
+    @ModelAttribute("startTime")
+    public String getStartTime() {
+        // Default start time is 00:00:00
+        return "00:00:00";
+    }
+
+    @ModelAttribute("endTime")
+    public String getEndTime() {
+        // Default end time is 23:59:59
+        return "23:59:00";
+    }
+
+    @ModelAttribute("tableList")
+    public List<List<List<Result>>> getTableList() {
+        String today = selectedDateDefault();
+        return resultService.handleListResult(today, getStartTime(), getEndTime());
     }
 
     @GetMapping("/")
@@ -48,10 +62,19 @@ public class AdminPage {
     }
 
     @PostMapping("/")
-    public String homePage(@RequestParam("date") String date, Model model) {
-        if (!ObjectUtils.isEmpty(date)) {
+    public String homePage(@RequestParam("date") String date,
+                           @RequestParam("startTime") String startTime,
+                           @RequestParam("endTime") String endTime,
+                           Model model) {
+        if (StringUtils.hasText(date) && StringUtils.hasText(startTime) && StringUtils.hasText(endTime)) {
+//            startTime = startTime + ":00"; // Convert "HH:mm" to "HH:mm:ss"
+//            endTime = endTime + ":00";
+
             model.addAttribute("selectedDate", date);
-            model.addAttribute("tableList", resultService.handleListResult(date));
+            model.addAttribute("startTime", startTime);
+            model.addAttribute("endTime", endTime);
+            List<List<List<Result>>> tableList = resultService.handleListResult(date, startTime, endTime);
+            model.addAttribute("tableList", tableList);
         }
 
         return "index";

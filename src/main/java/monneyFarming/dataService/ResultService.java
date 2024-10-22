@@ -32,8 +32,8 @@ public class ResultService {
         return resultRepository.findByDate(date);
     }
 
-    public List<List<List<Result>>> handleListResult(String date) {
-        List<Result> totalResult = findByDate(date);
+    public List<List<List<Result>>> handleListResult(String date, String startTime, String endTime) {
+        List<Result> totalResult = resultRepository.findByDateAndTime(date, startTime, endTime);
 
         int COLUM_MAX_SIZE = 5;
         int MAX_COLUM_PER_TABLE = 35;

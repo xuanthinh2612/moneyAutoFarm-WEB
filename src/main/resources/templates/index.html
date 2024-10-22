@@ -306,9 +306,29 @@
                             style="width: min-content;"
                             required />
                 </div>
+                <!-- Start Time Input -->
+                <div class="col-2 p-2">
+                    <input
+                            th:value="${startTime}"
+                            type="time"
+                            id="startTime"
+                            name="startTime"
+                            class="form-control"
+                            style="width: min-content;"/>
+                </div>
+                <!-- End Time Input -->
+                <div class="col-2 p-2">
+                    <input
+                            th:value="${endTime}"
+                            type="time"
+                            id="endTime"
+                            name="endTime"
+                            class="form-control"
+                            style="width: min-content;"/>
+                </div>
                 <div class="col-1 p-2">
                     <!-- Submit Button -->
-                        <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
                 </div>
             </div>
         </form>
