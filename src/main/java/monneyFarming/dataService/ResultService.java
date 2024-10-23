@@ -3,11 +3,9 @@ package monneyFarming.dataService;
 import monneyFarming.model.Result;
 import monneyFarming.repository.ResultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -30,6 +28,18 @@ public class ResultService {
 
     public List<Result> findByDate(String date) {
         return resultRepository.findByDate(date);
+    }
+
+    public int calculateWinAmount(String date, String startTime, String endTime) {
+        List<Result> totalResult = resultRepository.findByDateAndTime(date, startTime, endTime);
+        int totalBetAmount = 0;
+        int totalWinAmount = 0;
+        for (Result r :
+                totalResult) {
+            totalBetAmount += r.getBetAmount();
+            totalWinAmount += r.getWinAmount();
+        }
+        return totalWinAmount - totalBetAmount;
     }
 
     public List<List<List<Result>>> handleListResult(String date, String startTime, String endTime) {
@@ -59,7 +69,7 @@ public class ResultService {
                 }
             }
             columList.add(column);
-            if(columList.size() >= MAX_COLUM_PER_TABLE) {
+            if (columList.size() >= MAX_COLUM_PER_TABLE) {
                 tableList.add(columList);
                 columList = new ArrayList<>();
             }

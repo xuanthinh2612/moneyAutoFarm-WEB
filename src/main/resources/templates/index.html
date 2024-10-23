@@ -304,7 +304,7 @@
                             name="date"
                             class="form-control"
                             style="width: min-content;"
-                            required />
+                            required/>
                 </div>
                 <!-- Start Time Input -->
                 <div class="col-2 p-2">
@@ -326,9 +326,13 @@
                             class="form-control"
                             style="width: min-content;"/>
                 </div>
-                <div class="col-1 p-2">
+                <div class="col-2 p-2">
                     <!-- Submit Button -->
                     <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+                <div class="col-2  p-2">
+                    <!-- Submit Button -->
+                    <b>Win: <span th:text="${winAmount}"></span></b>
                 </div>
             </div>
         </form>
