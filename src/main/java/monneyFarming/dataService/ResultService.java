@@ -58,9 +58,8 @@ public class ResultService {
                     break;
                 }
             }
-            if (columList.size() < MAX_COLUM_PER_TABLE) {
-                columList.add(column);
-            } else {
+            columList.add(column);
+            if(columList.size() >= MAX_COLUM_PER_TABLE) {
                 tableList.add(columList);
                 columList = new ArrayList<>();
             }
