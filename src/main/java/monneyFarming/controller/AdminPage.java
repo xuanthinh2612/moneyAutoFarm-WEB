@@ -26,9 +26,19 @@ public class AdminPage {
     @Autowired
     InitValueService initValueService;
 
-    @ModelAttribute("initValue")
-    public InitValue initValue() {
-        return initValueService.findFirstValue();
+    @ModelAttribute("initValue1")
+    public InitValue getInitValue1() {
+        return initValueService.findAll().get(0);
+    }
+
+    @ModelAttribute("initValue2")
+    public InitValue getInitValue2() {
+        return initValueService.findAll().get(1);
+    }
+
+    @ModelAttribute("initValue3")
+    public InitValue getInitValue3() {
+        return initValueService.findAll().get(2);
     }
 
     @GetMapping("/")
@@ -69,47 +79,24 @@ public class AdminPage {
         return "index";
     }
 
-    @RequestMapping(value = "changeBetAction", params = "startProgram")
-    public String startProgram(Model model) {
+    @PostMapping("/updateInitValue1")
+    public String updateInitValue1(@ModelAttribute("initValue1") InitValue initValue, Model model) {
 //        initValue.setReadyStatus(InitValue.START_PROGRAM);
-//        initValueService.save(initValue);
-//        TaiXiuBetting newProgram = new TaiXiuBetting(initValueService, resultService);
-//        newProgram.start();
+        initValueService.save(initValue);
         return "redirect:/";
     }
 
-    @RequestMapping(value = "changeBetAction", params = "openMiniGame")
-    public String openMiniGame() {
-
-        InitValue initValue = initValueService.findFirstValue();
-        initValue.setReadyStatus(InitValue.OPEN_MINI_GAME);
+    @PostMapping("/updateInitValue2")
+    public String updateInitValue2(@ModelAttribute("initValue2") InitValue initValue, Model model) {
+//        initValue.setReadyStatus(InitValue.START_PROGRAM);
         initValueService.save(initValue);
-
         return "redirect:/";
     }
 
-    @RequestMapping(value = "changeBetAction", params = "stopProgram")
-    public String stopProgram(@ModelAttribute("initValue") InitValue initValue) {
-        initValue.setReadyStatus(InitValue.STOP_PROGRAM);
+    @PostMapping("/updateInitValue3")
+    public String updateInitValue3(@ModelAttribute("initValue3") InitValue initValue, Model model) {
+//        initValue.setReadyStatus(InitValue.START_PROGRAM);
         initValueService.save(initValue);
-
-        return "redirect:/";
-    }
-
-    @RequestMapping(value = "changeBetAction", params = "startBet")
-    public String startBet(@ModelAttribute("initValue") InitValue initValue) {
-
-        initValue.setReadyStatus(InitValue.START_BET);
-        initValueService.save(initValue);
-
-        return "redirect:/";
-    }
-
-    @RequestMapping(value = "changeBetAction", params = "stopBet")
-    public String stopBet(@ModelAttribute("initValue") InitValue initValue) {
-        initValue.setReadyStatus(InitValue.STOP_BET);
-        initValueService.save(initValue);
-
         return "redirect:/";
     }
 

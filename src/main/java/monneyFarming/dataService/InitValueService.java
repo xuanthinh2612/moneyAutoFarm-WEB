@@ -13,20 +13,15 @@ public class InitValueService {
     InitValueRepository initValueRepository;
 
 
-    public InitValue save(InitValue initValue) {
-        return initValueRepository.save(initValue);
+    public void save(InitValue initValue) {
+        initValueRepository.save(initValue);
     }
 
-    public InitValue findInitValueById(Long id) {
+    public InitValue findById(Long id) {
         return initValueRepository.findById(id).orElse(null);
     }
 
-    public InitValue findFirstValue() {
-        List<InitValue> initValueList = initValueRepository.findAll();
-        if (initValueList.size() > 0) {
-            return initValueList.get(0);
-        } else {
-            return new InitValue();
-        }
+    public List<InitValue> findAll() {
+        return initValueRepository.findAll();
     }
 }

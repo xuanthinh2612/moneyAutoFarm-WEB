@@ -35,11 +35,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="/">Tai Xiu Controller</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
-                class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        </div>
+    </div>
     </div>
 </nav>
 <!-- Page header with logo and tagline-->
@@ -48,51 +44,45 @@
 <div class="container py-2">
     <div class="row">
         <!-- Side widgets-->
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <!-- Search widget-->
             <div class="card mb-4">
                 <div class="card-header"><h1 class="col-6">SERVER 1</h1></div>
                 <div class="card-body">
-                    <!--                    <div class="text-center my-3 row">-->
-                    <!--                        <h5 class="col-4">Info 1: </h5>-->
-                    <!--                        <h5 class="col-4">Info 1: </h5>-->
-                    <!--                        <h5 class="col-4">Info 1: </h5>-->
-                    <!--                        <h5 class="col-4">Info 1: </h5>-->
-                    <!--                        <h5 class="col-4">Info 1: </h5>-->
-                    <!--                        <h5 class="col-4">Info 1: </h5>-->
-                    <!--                    </div>-->
                     <div class="row">
-                        <form class="row" action="/changeBetAction" method="post">
-
-                            <div class="col-sm-6 p-2">
-                                <button type="submit" name="startProgram" class="btn btn-outline-success btn-lg">START
-                                    PROGRAM
-                                </button>
-
+                        <form action="/updateInitValue1" class="row" th:object="${initValue1}" method="post">
+                            <input type="hidden" th:field="*{id}"/>
+                            <div class="col-sm-6 p-1">
+                                <label>Server No.</label>
                             </div>
-                            <div class="col-sm-6 p-2">
-                                <button type="submit" name="stopProgram" class="btn btn-danger btn-lg">STOP PROGRAM
-                                </button>
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{serverNo}" class="form-control" disabled>
+                                        <option value="1">Server 1</option>
+                                        <option value="2">Server 2</option>
+                                        <option value="3">Server 3</option>
+                                        <option value="4">Server 4</option>
+                                        <option value="5">Server 5</option>
+                                    </select>
+                                </label>
                             </div>
-
-                            <div class="col-sm-6 p-2">
-                                <button type="submit" name="openMiniGame" class="btn btn-primary btn-lg">OPEN MINI
-                                    GAME
-                                </button>
+                            <div class="col-sm-6 p-1">
+                                <label>Status</label>
                             </div>
-                        </form>
-
-                        <div class="col-sm-12 p-2">
-                        </div>
-                        <div class="col-sm-12 p-2">
-                        </div>
-                        <form action="/changeBetAction" class="row" th:object="${initValue}">
-                            <div class="col-sm-6 p-2">
-                                <label>BET AMOUNT</label>
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{serverRunning}" class="form-control" disabled>
+                                        <option value="0">Stopped</option>
+                                        <option value="1">Running</option>
+                                    </select>
+                                </label>
                             </div>
-                            <div class="col-sm-6 py-3">
-                                <label>
-                                    <select th:field="*{betAmount}" class="form-control">
+                            <div class="col-sm-6 p-1">
+                                <label>Base Amount</label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{betBase}" class="form-control">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -103,21 +93,58 @@
                                     </select>
                                 </label>
                             </div>
-                            <div class="col-sm-6 p-2">
-                                <label>Use For Server</label>
+                            <div class="col-sm-6 p-1">
+                                <label>Bet Point</label>
                             </div>
-                            <div class="col-sm-6 p-2">
+                            <div class="col-sm-6 p-1">
                                 <label class="w-100">
-                                    <select th:field="*{useFor}" class="form-control">
-                                        <option value="1">Server 1</option>
-                                        <option value="2">Server 2</option>
+                                    <select th:field="*{betPoint}" class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
                                     </select>
                                 </label>
                             </div>
-                            <div class="col-sm-6 p-2">
-                                <label>BET IN</label>
+                            <div class="col-sm-6 p-1">
+                                <label>Max Lose Number</label>
                             </div>
-                            <div class="col-sm-6 p-2">
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{maxLoseNum}" class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label>Bet In</label>
+                            </div>
+                            <div class="col-sm-6 p-1">
                                 <label class="w-100">
                                     <select th:field="*{betIn}" class="form-control">
                                         <option value="tai">Tai</option>
@@ -125,88 +152,92 @@
                                     </select>
                                 </label>
                             </div>
-                            <div class="col-sm-6 p-2">
-                                <label>BET ROUND</label>
+                            <div class="col-sm-6 p-1">
+                                <label>Bet Type</label>
                             </div>
-                            <div class="col-sm-6 py-3">
-                                <label>
-                                    <select th:field="*{betRound}" class="form-control">
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{betType}" class="form-control">
+                                        <option value="0">Exit Program</option>
+                                        <option value="1">Constantly</option>
+                                        <option value="2">Wait And Best</option>
+                                        <option value="3">Follow Result</option>
+                                        <option value="5">Pause</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label>Max Round</label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{maxRound}" class="form-control">
                                         <option value="1">1 Round</option>
                                         <option value="2">2 Round</option>
                                         <option value="3">3 Round</option>
                                         <option value="5">5 Round</option>
                                         <option value="10">10 Round</option>
-                                        <option value="15">15 Round (15 min)</option>
-                                        <option value="30">30 Round (30 min)</option>
-                                        <option value="60">60 Round (1 hour)</option>
-                                        <option value="120">120 Round (2 hour)</option>
-                                        <option value="250">250 Round (4 hour)</option>
-                                        <option value="500">500 Round (8 hour)</option>
-                                        <option value="1000">1000 Round (16 hour)</option>
+                                        <option value="15">15 Round</option>
+                                        <option value="30">30 Round</option>
+                                        <option value="60">60 Round</option>
+                                        <option value="120">120 Round</option>
+                                        <option value="250">250 Round</option>
+                                        <option value="500">500 Round</option>
+                                        <option value="1000">1000 Round</option>
+                                        <option value="1500">1000 Round</option>
+                                        <option value="2000">1000 Round</option>
                                     </select>
                                 </label>
                             </div>
-                            <div class="col-sm-6 p-2">
-                                <button type="submit" name="startBet" class="btn btn-primary btn-lg">START BETTING
+
+                            <div class="col-sm-6 pt-10">
+                                <button type="submit" class="btn btn-primary btn-lg">Submit
                                 </button>
                             </div>
-
-                            <div class="col-sm-6 p-2">
-                                <button type="submit" name="stopBet" class="btn btn-primary btn-lg">STOP BETTING
-                                </button>
-                            </div>
-
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Side widgets-->
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <!-- Search widget-->
             <div class="card mb-4">
-                <div class="card-header"><h1 class="col-6">SERVER 1</h1></div>
+                <div class="card-header"><h1 class="col-6">SERVER 2</h1></div>
                 <div class="card-body">
-                    <!--                    <div class="text-center my-3 row">-->
-                    <!--                        <h5 class="col-4">Info 1: </h5>-->
-                    <!--                        <h5 class="col-4">Info 1: </h5>-->
-                    <!--                        <h5 class="col-4">Info 1: </h5>-->
-                    <!--                        <h5 class="col-4">Info 1: </h5>-->
-                    <!--                        <h5 class="col-4">Info 1: </h5>-->
-                    <!--                        <h5 class="col-4">Info 1: </h5>-->
-                    <!--                    </div>-->
                     <div class="row">
-                        <form class="row" action="/changeBetAction" method="post">
-
-                            <div class="col-sm-6 p-2">
-                                <button type="submit" name="startProgram" class="btn btn-outline-success btn-lg">START
-                                    PROGRAM
-                                </button>
-
+                        <form action="/updateInitValue2" class="row" th:object="${initValue2}" method="post">
+                            <input type="hidden" th:field="*{id}"/>
+                            <div class="col-sm-6 p-1">
+                                <label>Server No.</label>
                             </div>
-                            <div class="col-sm-6 p-2">
-                                <button type="submit" name="stopProgram" class="btn btn-danger btn-lg">STOP PROGRAM
-                                </button>
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{serverNo}" class="form-control" disabled>
+                                        <option value="1">Server 1</option>
+                                        <option value="2">Server 2</option>
+                                        <option value="3">Server 3</option>
+                                        <option value="4">Server 4</option>
+                                        <option value="5">Server 5</option>
+                                    </select>
+                                </label>
                             </div>
-
-                            <div class="col-sm-6 p-2">
-                                <button type="submit" name="openMiniGame" class="btn btn-primary btn-lg">OPEN MINI
-                                    GAME
-                                </button>
+                            <div class="col-sm-6 p-1">
+                                <label>Status</label>
                             </div>
-                        </form>
-
-                        <div class="col-sm-12 p-2">
-                        </div>
-                        <div class="col-sm-12 p-2">
-                        </div>
-                        <form action="/changeBetAction" class="row" th:object="${initValue}">
-                            <div class="col-sm-6 p-2">
-                                <label>BET AMOUNT</label>
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{serverRunning}" class="form-control" disabled>
+                                        <option value="0">Stopped</option>
+                                        <option value="1">Running</option>
+                                    </select>
+                                </label>
                             </div>
-                            <div class="col-sm-6 py-3">
-                                <label>
-                                    <select th:field="*{betAmount}" class="form-control">
+                            <div class="col-sm-6 p-1">
+                                <label>Base Amount</label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{betBase}" class="form-control">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -217,21 +248,58 @@
                                     </select>
                                 </label>
                             </div>
-                            <div class="col-sm-6 p-2">
-                                <label>Use For Server</label>
+                            <div class="col-sm-6 p-1">
+                                <label>Bet Point</label>
                             </div>
-                            <div class="col-sm-6 p-2">
+                            <div class="col-sm-6 p-1">
                                 <label class="w-100">
-                                    <select th:field="*{useFor}" class="form-control">
-                                        <option value="1">Server 1</option>
-                                        <option value="2">Server 2</option>
+                                    <select th:field="*{betPoint}" class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
                                     </select>
                                 </label>
                             </div>
-                            <div class="col-sm-6 p-2">
-                                <label>BET IN</label>
+                            <div class="col-sm-6 p-1">
+                                <label>Max Lose Number</label>
                             </div>
-                            <div class="col-sm-6 p-2">
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{maxLoseNum}" class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label>Bet In</label>
+                            </div>
+                            <div class="col-sm-6 p-1">
                                 <label class="w-100">
                                     <select th:field="*{betIn}" class="form-control">
                                         <option value="tai">Tai</option>
@@ -239,34 +307,46 @@
                                     </select>
                                 </label>
                             </div>
-                            <div class="col-sm-6 p-2">
-                                <label>BET ROUND</label>
+                            <div class="col-sm-6 p-1">
+                                <label>Bet Type</label>
                             </div>
-                            <div class="col-sm-6 py-3">
-                                <label>
-                                    <select th:field="*{betRound}" class="form-control">
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{betType}" class="form-control">
+                                        <option value="0">Exit Program</option>
+                                        <option value="1">Constantly</option>
+                                        <option value="2">Wait And Best</option>
+                                        <option value="3">Follow Result</option>
+                                        <option value="5">Pause</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label>Max Round</label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{maxRound}" class="form-control">
                                         <option value="1">1 Round</option>
                                         <option value="2">2 Round</option>
                                         <option value="3">3 Round</option>
                                         <option value="5">5 Round</option>
                                         <option value="10">10 Round</option>
-                                        <option value="15">15 Round (15 min)</option>
-                                        <option value="30">30 Round (30 min)</option>
-                                        <option value="60">60 Round (1 hour)</option>
-                                        <option value="120">120 Round (2 hour)</option>
-                                        <option value="250">250 Round (4 hour)</option>
-                                        <option value="500">500 Round (8 hour)</option>
-                                        <option value="1000">1000 Round (16 hour)</option>
+                                        <option value="15">15 Round</option>
+                                        <option value="30">30 Round</option>
+                                        <option value="60">60 Round</option>
+                                        <option value="120">120 Round</option>
+                                        <option value="250">250 Round</option>
+                                        <option value="500">500 Round</option>
+                                        <option value="1000">1000 Round</option>
+                                        <option value="1500">1000 Round</option>
+                                        <option value="2000">1000 Round</option>
                                     </select>
                                 </label>
                             </div>
-                            <div class="col-sm-6 p-2">
-                                <button type="submit" name="startBet" class="btn btn-primary btn-lg">START BETTING
-                                </button>
-                            </div>
 
-                            <div class="col-sm-6 p-2">
-                                <button type="submit" name="stopBet" class="btn btn-primary btn-lg">STOP BETTING
+                            <div class="col-sm-6 pt-10">
+                                <button type="submit" class="btn btn-primary btn-lg">Submit
                                 </button>
                             </div>
                         </form>
@@ -274,6 +354,162 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-4">
+            <!-- Search widget-->
+            <div class="card mb-4">
+                <div class="card-header"><h1 class="col-6">SERVER 3</h1></div>
+                <div class="card-body">
+                    <div class="row">
+                        <form action="/updateInitValue3" class="row" th:object="${initValue3}" method="post">
+                            <input type="hidden" th:field="*{id}"/>
+                            <div class="col-sm-6 p-1">
+                                <label>Server No.</label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{serverNo}" class="form-control" disabled>
+                                        <option value="1">Server 1</option>
+                                        <option value="2">Server 2</option>
+                                        <option value="3">Server 3</option>
+                                        <option value="4">Server 4</option>
+                                        <option value="5">Server 5</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label>Status</label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{serverRunning}" class="form-control" disabled>
+                                        <option value="0">Stopped</option>
+                                        <option value="1">Running</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label>Base Amount</label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{betBase}" class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label>Bet Point</label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{betPoint}" class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label>Max Lose Number</label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{maxLoseNum}" class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label>Bet In</label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{betIn}" class="form-control">
+                                        <option value="tai">Tai</option>
+                                        <option value="xiu">Xiu</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label>Bet Type</label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{betType}" class="form-control">
+                                        <option value="0">Exit Program</option>
+                                        <option value="1">Constantly</option>
+                                        <option value="2">Wait And Best</option>
+                                        <option value="3">Follow Result</option>
+                                        <option value="5">Pause</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label>Max Round</label>
+                            </div>
+                            <div class="col-sm-6 p-1">
+                                <label class="w-100">
+                                    <select th:field="*{maxRound}" class="form-control">
+                                        <option value="1">1 Round</option>
+                                        <option value="2">2 Round</option>
+                                        <option value="3">3 Round</option>
+                                        <option value="5">5 Round</option>
+                                        <option value="10">10 Round</option>
+                                        <option value="15">15 Round</option>
+                                        <option value="30">30 Round</option>
+                                        <option value="60">60 Round</option>
+                                        <option value="120">120 Round</option>
+                                        <option value="250">250 Round</option>
+                                        <option value="500">500 Round</option>
+                                        <option value="1000">1000 Round</option>
+                                        <option value="1500">1000 Round</option>
+                                        <option value="2000">1000 Round</option>
+                                    </select>
+                                </label>
+                            </div>
+
+                            <div class="col-sm-6 pt-10">
+                                <button type="submit" class="btn btn-primary btn-lg">Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <form class="mb-5" action="/" method="POST" id="selectDateForm">
             <div class="row">
                 <div class="col-1 p-2">

@@ -24,19 +24,22 @@ public class InitValue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column
-    private int readyStatus;
-
+    private int serverNo;
     @Column
-    private int betAmount;
-
+    private boolean serverRunning;
+    @Column
+    private int betType;
+    @Column
+    private int betPoint;
+    @Column
+    private int maxRound;
     @Column
     private String betIn;
-
     @Column
-    private int betRound;
-
+    private int betBase;
     @Column
-    private String useFor;
+    private int maxLoseNum;
 }
+
+
