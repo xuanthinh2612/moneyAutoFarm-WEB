@@ -20,6 +20,14 @@
             width: 20px;
             height: 20px;
         }
+
+
+
+
+
+
+
+
     </style>
     <!-- Favicon-->
     <meta charset="UTF-8">
@@ -47,7 +55,8 @@
         <div class="col-lg-4">
             <!-- Search widget-->
             <div class="card mb-4">
-                <div class="card-header"><h1 class="col-6">SERVER 1</h1></div>
+                <div class="card-header" th:classappend="${initValue1.serverRunning} ? 'bg-info' : 'bg-secondary'"><h1
+                        class="col-6">SERVER 1</h1></div>
                 <div class="card-body">
                     <div class="row">
                         <form action="/updateInitValue1" class="row" th:object="${initValue1}" method="post">
@@ -191,7 +200,7 @@
                             </div>
 
                             <div class="col-sm-6 pt-10">
-                                <button type="submit" class="btn btn-primary btn-lg">Submit
+                                <button type="submit" class="btn btn-primary btn-lg">Save
                                 </button>
                             </div>
                         </form>
@@ -202,7 +211,8 @@
         <div class="col-lg-4">
             <!-- Search widget-->
             <div class="card mb-4">
-                <div class="card-header"><h1 class="col-6">SERVER 2</h1></div>
+                <div class="card-header" th:classappend="${initValue2.serverRunning} ? 'bg-info' : 'bg-secondary'"><h1
+                        class="col-6">SERVER 2</h1></div>
                 <div class="card-body">
                     <div class="row">
                         <form action="/updateInitValue2" class="row" th:object="${initValue2}" method="post">
@@ -346,7 +356,7 @@
                             </div>
 
                             <div class="col-sm-6 pt-10">
-                                <button type="submit" class="btn btn-primary btn-lg">Submit
+                                <button type="submit" class="btn btn-primary btn-lg">Save
                                 </button>
                             </div>
                         </form>
@@ -357,7 +367,8 @@
         <div class="col-lg-4">
             <!-- Search widget-->
             <div class="card mb-4">
-                <div class="card-header"><h1 class="col-6">SERVER 3</h1></div>
+                <div class="card-header" th:classappend="${initValue3.serverRunning} ? 'bg-info' : 'bg-secondary'"><h1
+                        class="col-6">SERVER 3</h1></div>
                 <div class="card-body">
                     <div class="row">
                         <form action="/updateInitValue3" class="row" th:object="${initValue3}" method="post">
@@ -501,7 +512,7 @@
                             </div>
 
                             <div class="col-sm-6 pt-10">
-                                <button type="submit" class="btn btn-primary btn-lg">Submit
+                                <button type="submit" class="btn btn-primary btn-lg">Save
                                 </button>
                             </div>
                         </form>
@@ -564,7 +575,7 @@
                 </div>
                 <div class="col-2 p-2">
                     <!-- Submit Button -->
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-success">Search</button>
                 </div>
                 <div class="col-2  p-2">
                     <!-- Submit Button -->
@@ -613,6 +624,14 @@
       table.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+
+
+
+
+
+
+
 </script>
 </body>
 </html>
