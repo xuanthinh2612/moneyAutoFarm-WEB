@@ -42,6 +42,10 @@ public class ResultService {
         return totalWinAmount - totalBetAmount;
     }
 
+    public List<Result> findByDateAndTime(String date, String startTime, String endTime) {
+        return resultRepository.findByDateAndTime(date, startTime, endTime);
+    }
+
     public List<List<List<Result>>> handleListResult(String date, String startTime, String endTime) {
         List<Result> totalResult = resultRepository.findByDateAndTime(date, startTime, endTime);
 

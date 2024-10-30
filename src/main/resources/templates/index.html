@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>Tai Xiu Controller</title>
+    <title>Tài Xỉu Controller</title>
     <style>
         table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
         }
         th, td {
-<!--            padding: 8px;-->
             text-align: center;
         }
 
@@ -21,13 +20,63 @@
             height: 20px;
         }
 
+ /* Basic body styling for scrollable content */
+        body {
+            margin: 0;
+            padding: 0;
+        }
 
+        /* Scroll Buttons Styling */
+        .reload-btn {
+            position: fixed;
+            right: 20px;
+            padding: 15px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+            bottom: 140px;
+        }
 
+        /* Scroll Buttons Styling */
+        .scroll-btn {
+            position: fixed;
+            right: 20px;
+            padding: 15px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+        }
 
+        /* Position for Scroll Up Button */
+        .scroll-up {
+            bottom: 80px; /* 80px to separate from the scroll-down button */
+        }
 
+        /* Position for Scroll Down Button */
+        .scroll-down {
+            bottom: 80px;
+        }
 
+        /* Hover Effect */
+        .scroll-btn:hover {
+            background-color: #0056b3;
+        }
 
-
+        /* Hide both buttons initially */
+        .scroll-btn.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
     </style>
     <!-- Favicon-->
     <meta charset="UTF-8">
@@ -42,8 +91,7 @@
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="/">Tai Xiu Controller</a>
-    </div>
+        <a class="navbar-brand" href="/">Tài Xỉu Controller</a>
     </div>
 </nav>
 <!-- Page header with logo and tagline-->
@@ -108,7 +156,6 @@
                             <div class="col-sm-6 p-1">
                                 <label class="w-100">
                                     <select th:field="*{betPoint}" class="form-control">
-                                        <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
@@ -132,8 +179,6 @@
                             <div class="col-sm-6 p-1">
                                 <label class="w-100">
                                     <select th:field="*{maxLoseNum}" class="form-control">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
@@ -156,8 +201,8 @@
                             <div class="col-sm-6 p-1">
                                 <label class="w-100">
                                     <select th:field="*{betIn}" class="form-control">
-                                        <option value="tai">Tai</option>
-                                        <option value="xiu">Xiu</option>
+                                        <option value="tai">Tài</option>
+                                        <option value="xiu">Xỉu</option>
                                     </select>
                                 </label>
                             </div>
@@ -167,11 +212,11 @@
                             <div class="col-sm-6 p-1">
                                 <label class="w-100">
                                     <select th:field="*{betType}" class="form-control">
-                                        <option value="0">Exit Program</option>
                                         <option value="1">Constantly</option>
                                         <option value="2">Wait And Best</option>
                                         <option value="3">Follow Result</option>
                                         <option value="5">Pause</option>
+                                        <option value="0">Exit Program</option>
                                     </select>
                                 </label>
                             </div>
@@ -181,20 +226,21 @@
                             <div class="col-sm-6 p-1">
                                 <label class="w-100">
                                     <select th:field="*{maxRound}" class="form-control">
-                                        <option value="1">1 Round</option>
-                                        <option value="2">2 Round</option>
                                         <option value="3">3 Round</option>
                                         <option value="5">5 Round</option>
                                         <option value="10">10 Round</option>
-                                        <option value="15">15 Round</option>
+                                        <option value="20">20 Round</option>
                                         <option value="30">30 Round</option>
-                                        <option value="60">60 Round</option>
-                                        <option value="120">120 Round</option>
-                                        <option value="250">250 Round</option>
+                                        <option value="50">50 Round</option>
+                                        <option value="100">100 Round</option>
+                                        <option value="300">300 Round</option>
                                         <option value="500">500 Round</option>
+                                        <option value="800">800 Round</option>
                                         <option value="1000">1000 Round</option>
-                                        <option value="1500">1000 Round</option>
-                                        <option value="2000">1000 Round</option>
+                                        <option value="1500">1500 Round</option>
+                                        <option value="2000">2000 Round</option>
+                                        <option value="3000">3000 Round</option>
+                                        <option value="5000">5000 Round</option>
                                     </select>
                                 </label>
                             </div>
@@ -264,7 +310,6 @@
                             <div class="col-sm-6 p-1">
                                 <label class="w-100">
                                     <select th:field="*{betPoint}" class="form-control">
-                                        <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
@@ -288,8 +333,6 @@
                             <div class="col-sm-6 p-1">
                                 <label class="w-100">
                                     <select th:field="*{maxLoseNum}" class="form-control">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
@@ -312,8 +355,8 @@
                             <div class="col-sm-6 p-1">
                                 <label class="w-100">
                                     <select th:field="*{betIn}" class="form-control">
-                                        <option value="tai">Tai</option>
-                                        <option value="xiu">Xiu</option>
+                                        <option value="tai">Tài</option>
+                                        <option value="xiu">Xỉu</option>
                                     </select>
                                 </label>
                             </div>
@@ -323,11 +366,11 @@
                             <div class="col-sm-6 p-1">
                                 <label class="w-100">
                                     <select th:field="*{betType}" class="form-control">
-                                        <option value="0">Exit Program</option>
                                         <option value="1">Constantly</option>
                                         <option value="2">Wait And Best</option>
                                         <option value="3">Follow Result</option>
                                         <option value="5">Pause</option>
+                                        <option value="0">Exit Program</option>
                                     </select>
                                 </label>
                             </div>
@@ -337,20 +380,21 @@
                             <div class="col-sm-6 p-1">
                                 <label class="w-100">
                                     <select th:field="*{maxRound}" class="form-control">
-                                        <option value="1">1 Round</option>
-                                        <option value="2">2 Round</option>
                                         <option value="3">3 Round</option>
                                         <option value="5">5 Round</option>
                                         <option value="10">10 Round</option>
-                                        <option value="15">15 Round</option>
+                                        <option value="20">20 Round</option>
                                         <option value="30">30 Round</option>
-                                        <option value="60">60 Round</option>
-                                        <option value="120">120 Round</option>
-                                        <option value="250">250 Round</option>
+                                        <option value="50">50 Round</option>
+                                        <option value="100">100 Round</option>
+                                        <option value="300">300 Round</option>
                                         <option value="500">500 Round</option>
+                                        <option value="800">800 Round</option>
                                         <option value="1000">1000 Round</option>
-                                        <option value="1500">1000 Round</option>
-                                        <option value="2000">1000 Round</option>
+                                        <option value="1500">1500 Round</option>
+                                        <option value="2000">2000 Round</option>
+                                        <option value="3000">3000 Round</option>
+                                        <option value="5000">5000 Round</option>
                                     </select>
                                 </label>
                             </div>
@@ -444,8 +488,6 @@
                             <div class="col-sm-6 p-1">
                                 <label class="w-100">
                                     <select th:field="*{maxLoseNum}" class="form-control">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
@@ -468,8 +510,8 @@
                             <div class="col-sm-6 p-1">
                                 <label class="w-100">
                                     <select th:field="*{betIn}" class="form-control">
-                                        <option value="tai">Tai</option>
-                                        <option value="xiu">Xiu</option>
+                                        <option value="tai">Tài</option>
+                                        <option value="xiu">Xỉu</option>
                                     </select>
                                 </label>
                             </div>
@@ -479,11 +521,11 @@
                             <div class="col-sm-6 p-1">
                                 <label class="w-100">
                                     <select th:field="*{betType}" class="form-control">
-                                        <option value="0">Exit Program</option>
                                         <option value="1">Constantly</option>
                                         <option value="2">Wait And Best</option>
                                         <option value="3">Follow Result</option>
                                         <option value="5">Pause</option>
+                                        <option value="0">Exit Program</option>
                                     </select>
                                 </label>
                             </div>
@@ -493,20 +535,21 @@
                             <div class="col-sm-6 p-1">
                                 <label class="w-100">
                                     <select th:field="*{maxRound}" class="form-control">
-                                        <option value="1">1 Round</option>
-                                        <option value="2">2 Round</option>
                                         <option value="3">3 Round</option>
                                         <option value="5">5 Round</option>
                                         <option value="10">10 Round</option>
-                                        <option value="15">15 Round</option>
+                                        <option value="20">20 Round</option>
                                         <option value="30">30 Round</option>
-                                        <option value="60">60 Round</option>
-                                        <option value="120">120 Round</option>
-                                        <option value="250">250 Round</option>
+                                        <option value="50">50 Round</option>
+                                        <option value="100">100 Round</option>
+                                        <option value="300">300 Round</option>
                                         <option value="500">500 Round</option>
+                                        <option value="800">800 Round</option>
                                         <option value="1000">1000 Round</option>
-                                        <option value="1500">1000 Round</option>
-                                        <option value="2000">1000 Round</option>
+                                        <option value="1500">1500 Round</option>
+                                        <option value="2000">2000 Round</option>
+                                        <option value="3000">3000 Round</option>
+                                        <option value="5000">5000 Round</option>
                                     </select>
                                 </label>
                             </div>
@@ -525,7 +568,7 @@
             <div class="row">
                 <div class="col-1 p-2">
                     <p>
-                        Tai:
+                        Tài:
                         <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg"
                              viewBox="0 0 512 512" width="5" height="5">
                             <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/>
@@ -573,13 +616,13 @@
                             class="form-control"
                             style="width: min-content;"/>
                 </div>
-                <div class="col-2 p-2">
+                <div class="col-1 p-2">
                     <!-- Submit Button -->
                     <button type="submit" class="btn btn-success">Search</button>
                 </div>
-                <div class="col-2  p-2">
-                    <!-- Submit Button -->
-                    <b>Win: <span th:text="${winAmount}"></span></b>
+                <div class="col-3  p-2">
+                    <b>Total: <span th:text="${overview.totalNumber}"></span></b>&nbsp;&nbsp;&nbsp;
+                    <b>Win: <span th:text="${overview.winAmount}"></span></b>
                 </div>
             </div>
         </form>
@@ -611,27 +654,61 @@
     </div>
 </div>
 <!-- Footer-->
-<footer class="py-2 my-2 bg-dark">
-    <div class="container"><p class="m-0 text-center text-white">Tai Xiu Master</p></div>
+<footer class="py-2 my-2 bg-dark" id="footer">
+    <div class="container"><p class="m-0 text-center text-white">Tài Xỉu Master</p></div>
 </footer>
+<!--Reload button-->
+<form action="/" class="hidden">
+    <button type="submit" class="scroll-btn reload-btn">Reload</button>
+</form>
+<!-- Scroll Up Button -->
+<button class="scroll-btn scroll-up hidden" id="scrollUpBtn">&#8593;</button>
+
+<!-- Scroll Down Button -->
+<button class="scroll-btn scroll-down" id="scrollDownBtn">&#8595;</button>
+
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+        const scrollUpBtn = document.getElementById('scrollUpBtn');
+        const scrollDownBtn = document.getElementById('scrollDownBtn');
+
+        // Show or hide the Scroll Up button based on scroll position
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollUpBtn.classList.remove('hidden');
+                scrollDownBtn.classList.add('hidden');
+            } else {
+                scrollUpBtn.classList.add('hidden');
+                scrollDownBtn.classList.remove('hidden');
+            }
+        });
+
+        // Scroll to the top of the page when the Scroll Up button is clicked
+        scrollUpBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Scroll to the bottom of the page when the Scroll Down button is clicked
+        scrollDownBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+</script>
 <!-- Core theme JS-->
 <script>
   window.onload = function() {
-    const table = document.querySelector('#selectDateForm');
+    const table = document.querySelector('#footer');
     if (table) {
       table.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-
-
-
-
-
-
-
 </script>
 </body>
 </html>

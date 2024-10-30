@@ -2,6 +2,7 @@ package monneyFarming.controller;
 
 import monneyFarming.dataService.InitValueService;
 import monneyFarming.dataService.ResultService;
+import monneyFarming.dto.OverviewDto;
 import monneyFarming.model.InitValue;
 import monneyFarming.model.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,8 +56,13 @@ public class AdminPage {
         model.addAttribute("startTime", startTime);
         model.addAttribute("endTime", endTime);
         model.addAttribute("tableList", tableList);
+        // set up data to show
         String winAmount = NumberFormat.getNumberInstance(Locale.US).format(resultService.calculateWinAmount(today, startTime, endTime));
-        model.addAttribute("winAmount", winAmount);
+        int totalNumber = resultService.findByDateAndTime(today, startTime, endTime).size();
+        OverviewDto overview = new OverviewDto();
+        overview.setWinAmount(winAmount);
+        overview.setTotalNumber(totalNumber);
+        model.addAttribute("overview", overview);
 
         return "index";
     }
@@ -73,7 +79,13 @@ public class AdminPage {
             model.addAttribute("endTime", endTime);
             List<List<List<Result>>> tableList = resultService.handleListResult(date, startTime, endTime);
             model.addAttribute("tableList", tableList);
-            model.addAttribute("winAmount", resultService.calculateWinAmount(date, startTime, endTime));
+            // set up data to show
+            String winAmount = NumberFormat.getNumberInstance(Locale.US).format(resultService.calculateWinAmount(date, startTime, endTime));
+            int totalNumber = resultService.findByDateAndTime(date, startTime, endTime).size();
+            OverviewDto overview = new OverviewDto();
+            overview.setWinAmount(winAmount);
+            overview.setTotalNumber(totalNumber);
+            model.addAttribute("overview", overview);
         }
 
         return "index";
