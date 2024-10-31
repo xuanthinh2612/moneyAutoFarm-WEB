@@ -11,11 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 @Controller
 @RequestMapping("/")
@@ -49,19 +47,15 @@ public class AdminPage {
         String endTime = "23:59:00";
         // default is today date
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String today = formatter.format(new Date());
-        List<List<List<Result>>> tableList = resultService.handleListResult(today, startTime, endTime);
+        String date = formatter.format(new Date());
+        List<List<List<Result>>> tableList = resultService.handleListResult(date, startTime, endTime);
 
-        model.addAttribute("selectedDate", today);
+        model.addAttribute("selectedDate", date);
         model.addAttribute("startTime", startTime);
         model.addAttribute("endTime", endTime);
         model.addAttribute("tableList", tableList);
         // set up data to show
-        String winAmount = NumberFormat.getNumberInstance(Locale.US).format(resultService.calculateWinAmount(today, startTime, endTime));
-        int totalNumber = resultService.findByDateAndTime(today, startTime, endTime).size();
-        OverviewDto overview = new OverviewDto();
-        overview.setWinAmount(winAmount);
-        overview.setTotalNumber(totalNumber);
+        OverviewDto overview = resultService.getOverviewInfo(date, startTime, endTime);
         model.addAttribute("overview", overview);
 
         return "index";
@@ -80,11 +74,7 @@ public class AdminPage {
             List<List<List<Result>>> tableList = resultService.handleListResult(date, startTime, endTime);
             model.addAttribute("tableList", tableList);
             // set up data to show
-            String winAmount = NumberFormat.getNumberInstance(Locale.US).format(resultService.calculateWinAmount(date, startTime, endTime));
-            int totalNumber = resultService.findByDateAndTime(date, startTime, endTime).size();
-            OverviewDto overview = new OverviewDto();
-            overview.setWinAmount(winAmount);
-            overview.setTotalNumber(totalNumber);
+            OverviewDto overview = resultService.getOverviewInfo(date, startTime, endTime);
             model.addAttribute("overview", overview);
         }
 
@@ -93,21 +83,18 @@ public class AdminPage {
 
     @PostMapping("/updateInitValue1")
     public String updateInitValue1(@ModelAttribute("initValue1") InitValue initValue, Model model) {
-//        initValue.setReadyStatus(InitValue.START_PROGRAM);
         initValueService.save(initValue);
         return "redirect:/";
     }
 
     @PostMapping("/updateInitValue2")
     public String updateInitValue2(@ModelAttribute("initValue2") InitValue initValue, Model model) {
-//        initValue.setReadyStatus(InitValue.START_PROGRAM);
         initValueService.save(initValue);
         return "redirect:/";
     }
 
     @PostMapping("/updateInitValue3")
     public String updateInitValue3(@ModelAttribute("initValue3") InitValue initValue, Model model) {
-//        initValue.setReadyStatus(InitValue.START_PROGRAM);
         initValueService.save(initValue);
         return "redirect:/";
     }

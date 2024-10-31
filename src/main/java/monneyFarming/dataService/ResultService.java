@@ -1,12 +1,15 @@
 package monneyFarming.dataService;
 
+import monneyFarming.dto.OverviewDto;
 import monneyFarming.model.Result;
 import monneyFarming.repository.ResultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class ResultService {
@@ -30,16 +33,30 @@ public class ResultService {
         return resultRepository.findByDate(date);
     }
 
-    public int calculateWinAmount(String date, String startTime, String endTime) {
+    public OverviewDto getOverviewInfo(String date, String startTime, String endTime) {
+        OverviewDto overview = new OverviewDto();
         List<Result> totalResult = resultRepository.findByDateAndTime(date, startTime, endTime);
+        // win amount
+        String winAmount;
+        int biggestAmount = 0;
         int totalBetAmount = 0;
         int totalWinAmount = 0;
         for (Result r :
                 totalResult) {
             totalBetAmount += r.getBetAmount();
             totalWinAmount += r.getWinAmount();
+            // find the biggest bet amount
+            if (r.getBetAmount() > biggestAmount) {
+                biggestAmount = r.getBetAmount();
+            }
         }
-        return totalWinAmount - totalBetAmount;
+        winAmount = NumberFormat.getNumberInstance(Locale.US).format(totalWinAmount - totalBetAmount);
+
+        overview.setBiggestAmount(biggestAmount);
+        overview.setTotalNumber(totalResult.size());
+        overview.setWinAmount(winAmount);
+
+        return overview;
     }
 
     public List<Result> findByDateAndTime(String date, String startTime, String endTime) {
@@ -81,9 +98,6 @@ public class ResultService {
         if (!columList.isEmpty()) {
             tableList.add(columList);
         }
-
         return tableList;
     }
-
-
 }

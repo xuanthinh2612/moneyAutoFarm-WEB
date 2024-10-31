@@ -6,6 +6,15 @@ public class OverviewDto {
 
     String winAmount;
     int totalNumber;
+    int biggestAmount;
+
+    public int getBiggestAmount() {
+        return biggestAmount;
+    }
+
+    public void setBiggestAmount(int biggestAmount) {
+        this.biggestAmount = biggestAmount;
+    }
 
     public int getTotalNumber() {
         return totalNumber;
