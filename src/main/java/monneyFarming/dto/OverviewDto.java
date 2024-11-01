@@ -7,6 +7,8 @@ public class OverviewDto {
     String winAmount;
     int totalNumber;
     int biggestAmount;
+    int outOfCoverNumber;
+    int overByNumber;
 
     public int getBiggestAmount() {
         return biggestAmount;
@@ -30,5 +32,21 @@ public class OverviewDto {
 
     public void setWinAmount(String winAmount) {
         this.winAmount = winAmount;
+    }
+
+    public int getOutOfCoverNumber() {
+        return outOfCoverNumber;
+    }
+
+    public void setOutOfCoverNumber(int outOfCoverNumber) {
+        this.outOfCoverNumber = outOfCoverNumber;
+    }
+
+    public int getOverByNumber() {
+        return overByNumber;
+    }
+
+    public void setOverByNumber(int overByNumber) {
+        this.overByNumber = overByNumber;
     }
 }

@@ -10,12 +10,6 @@ import java.time.LocalDateTime;
 @Setter
 public class Result {
 
-    final static String TAI = "tai";
-    final static String XIU = "xiu";
-
-    final static int SKIP_BET = 0;
-    final static int BET = 1;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,6 +25,9 @@ public class Result {
 
     @Column
     private int betStatus;
+
+    @Column
+    private int serverNo;
 
     @Column
     private LocalDateTime createdAt;

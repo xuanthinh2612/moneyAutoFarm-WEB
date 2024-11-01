@@ -33,10 +33,11 @@ public class ResultService {
         return resultRepository.findByDate(date);
     }
 
-    public OverviewDto getOverviewInfo(String date, String startTime, String endTime) {
+    public OverviewDto getOverviewInfo(String date, String startTime, String endTime, int overByNumber) {
         OverviewDto overview = new OverviewDto();
-        List<Result> totalResult = resultRepository.findByDateAndTime(date, startTime, endTime);
-        // win amount
+        List<Result> totalResultByServer1 = resultRepository.findByDateAndTimeByServer1(date, startTime, endTime);
+        List<Result> totalResult = resultRepository.findByDateAndTimeByAllServer(date, startTime, endTime);
+
         String winAmount;
         int biggestAmount = 0;
         int totalBetAmount = 0;
@@ -50,8 +51,27 @@ public class ResultService {
                 biggestAmount = r.getBetAmount();
             }
         }
+
+        int outOfCoverNumber = 0;
+        int constantlyCount = 0;
+
+        for (int i = 0; i < totalResultByServer1.size() - 1; i++) {
+            Result result1 = totalResultByServer1.get(i);
+            Result result2 = totalResultByServer1.get(i + 1);
+            // find the biggest bet amount
+            if (result1.getBetResult().equals(result2.getBetResult())) {
+                constantlyCount++;
+            } else {
+                if (constantlyCount >= overByNumber) {
+                    outOfCoverNumber++;
+                }
+                constantlyCount = 0;
+            }
+        }
         winAmount = NumberFormat.getNumberInstance(Locale.US).format(totalWinAmount - totalBetAmount);
 
+        overview.setOverByNumber(overByNumber);
+        overview.setOutOfCoverNumber(outOfCoverNumber);
         overview.setBiggestAmount(biggestAmount);
         overview.setTotalNumber(totalResult.size());
         overview.setWinAmount(winAmount);
@@ -59,12 +79,12 @@ public class ResultService {
         return overview;
     }
 
-    public List<Result> findByDateAndTime(String date, String startTime, String endTime) {
-        return resultRepository.findByDateAndTime(date, startTime, endTime);
+    public List<Result> findByDateAndTimeByServer1(String date, String startTime, String endTime) {
+        return resultRepository.findByDateAndTimeByServer1(date, startTime, endTime);
     }
 
     public List<List<List<Result>>> handleListResult(String date, String startTime, String endTime) {
-        List<Result> totalResult = resultRepository.findByDateAndTime(date, startTime, endTime);
+        List<Result> totalResult = resultRepository.findByDateAndTimeByServer1(date, startTime, endTime);
 
         int COLUM_MAX_SIZE = 5;
         int MAX_COLUM_PER_TABLE = 35;

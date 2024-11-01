@@ -44,7 +44,7 @@ public class AdminPage {
     public String homePage(Model model) {
         // default time
         String startTime = "00:00:00";
-        String endTime = "23:59:00";
+        String endTime = "23:59:59";
         // default is today date
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String date = formatter.format(new Date());
@@ -55,7 +55,8 @@ public class AdminPage {
         model.addAttribute("endTime", endTime);
         model.addAttribute("tableList", tableList);
         // set up data to show
-        OverviewDto overview = resultService.getOverviewInfo(date, startTime, endTime);
+        int overByNumber = getInitValue1().getMaxLoseNum() - 1; // maxLoseNumber - 1 = coverAbleNumber.(EX: maxLoseNumber = 7 -> cover 6 time
+        OverviewDto overview = resultService.getOverviewInfo(date, startTime, endTime, overByNumber);
         model.addAttribute("overview", overview);
 
         return "index";
@@ -74,7 +75,8 @@ public class AdminPage {
             List<List<List<Result>>> tableList = resultService.handleListResult(date, startTime, endTime);
             model.addAttribute("tableList", tableList);
             // set up data to show
-            OverviewDto overview = resultService.getOverviewInfo(date, startTime, endTime);
+            int overByNumber = getInitValue1().getMaxLoseNum() - 1; // maxLoseNumber - 1 = coverAbleNumber.(EX: maxLoseNumber = 7 -> cover 6 time
+            OverviewDto overview = resultService.getOverviewInfo(date, startTime, endTime, overByNumber);
             model.addAttribute("overview", overview);
         }
 
