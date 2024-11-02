@@ -9,6 +9,9 @@ public class OverviewDto {
     int biggestAmount;
     int outOfCoverNumber;
     int overByNumber;
+    int changeConstantlyNumber;
+    int totalWinAmount;
+    int totalBetAmount;
 
     public int getBiggestAmount() {
         return biggestAmount;
@@ -48,5 +51,29 @@ public class OverviewDto {
 
     public void setOverByNumber(int overByNumber) {
         this.overByNumber = overByNumber;
+    }
+
+    public int getChangeConstantlyNumber() {
+        return changeConstantlyNumber;
+    }
+
+    public void setChangeConstantlyNumber(int changeConstantlyNumber) {
+        this.changeConstantlyNumber = changeConstantlyNumber;
+    }
+
+    public int getTotalWinAmount() {
+        return totalWinAmount;
+    }
+
+    public void setTotalWinAmount(int totalWinAmount) {
+        this.totalWinAmount = totalWinAmount;
+    }
+
+    public int getTotalBetAmount() {
+        return totalBetAmount;
+    }
+
+    public void setTotalBetAmount(int totalBetAmount) {
+        this.totalBetAmount = totalBetAmount;
     }
 }

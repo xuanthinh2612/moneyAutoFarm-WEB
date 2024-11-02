@@ -52,6 +52,8 @@ public class ResultService {
             }
         }
 
+        int changeConstantlyNumber = 0;
+        int constantlyChangeCount = 0;
         int outOfCoverNumber = 0;
         int constantlyCount = 0;
 
@@ -60,8 +62,18 @@ public class ResultService {
             Result result2 = totalResultByServer1.get(i + 1);
             // find the biggest bet amount
             if (result1.getBetResult().equals(result2.getBetResult())) {
+                // count if bet result are same
                 constantlyCount++;
+                if (constantlyChangeCount >= overByNumber) {
+                    changeConstantlyNumber++;
+                }
+                constantlyChangeCount = 0;
+
             } else {
+
+                // count if bet result change
+                constantlyChangeCount++;
+
                 if (constantlyCount >= overByNumber) {
                     outOfCoverNumber++;
                 }
@@ -70,8 +82,11 @@ public class ResultService {
         }
         winAmount = NumberFormat.getNumberInstance(Locale.US).format(totalWinAmount - totalBetAmount);
 
-        overview.setOverByNumber(overByNumber);
-        overview.setOutOfCoverNumber(outOfCoverNumber);
+        overview.setOverByNumber(overByNumber); // max lose number
+        overview.setTotalWinAmount(totalWinAmount); // Total Win
+        overview.setTotalBetAmount(totalBetAmount); // Total Bet amount
+        overview.setChangeConstantlyNumber(changeConstantlyNumber); // count for constantly change
+        overview.setOutOfCoverNumber(outOfCoverNumber); // count for constantly
         overview.setBiggestAmount(biggestAmount);
         overview.setTotalNumber(totalResult.size());
         overview.setWinAmount(winAmount);
