@@ -101,5 +101,26 @@ public class AdminPage {
         return "redirect:/";
     }
 
+    @PostMapping(value = "deleteSecondImage", params = "stopDeleteImage")
+    public String stopDeleteSecondImage() {
+        List<InitValue> initValueList = initValueService.findAll();
+        for (InitValue initValue : initValueList) {
+            initValue.setDeleteImage(false);
+            initValueService.save(initValue);
+        }
+        return "redirect:/";
+    }
+
+    @PostMapping(value = "deleteSecondImage", params = "enableDeleteImage")
+    public String enableDeleteSecondImage() {
+        List<InitValue> initValueList = initValueService.findAll();
+        for (InitValue initValue : initValueList) {
+            initValue.setDeleteImage(true);
+            initValueService.save(initValue);
+        }
+        return "redirect:/";
+
+    }
+
 
 }

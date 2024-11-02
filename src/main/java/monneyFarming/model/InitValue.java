@@ -27,6 +27,8 @@ public class InitValue {
     @Column
     private int serverNo;
     @Column
+    private boolean deleteImage;
+    @Column
     private boolean serverRunning;
     @Column
     private int betType;
