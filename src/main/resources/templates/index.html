@@ -80,7 +80,6 @@
 
 
 
-
     </style>
     <!-- Favicon-->
     <meta charset="UTF-8">
@@ -106,7 +105,6 @@
         </form>
     </div>
 </nav>
-
 
 <!-- Page content-->
 <div class="container py-2">
@@ -632,8 +630,9 @@
                     <!-- Submit Button -->
                     <button type="submit" class="btn btn-success">Search</button>
                 </div>
-                <div class="col-3 p-2"></div>
-                <div class="col-12 pt-5">
+                <div class="col-3 p-2">
+                </div>
+                <div class="col-8 pt-5">
                     <b>Total: <span th:text="${overview.totalNumber}"></span></b>&nbsp;&nbsp;&nbsp;
                     <b>Win-NET: <span class="text-danger" th:text="${overview.winAmount}"></span></b>&nbsp;&nbsp;
                     <b>TotalWin: <span th:text="${overview.totalWinAmount}"></span></b>&nbsp;&nbsp;
@@ -646,6 +645,12 @@
             </div>
         </form>
         <table class="table table-bordered">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-end">
+                    <button id="prevBtn" class="m-2 btn btn-secondary">Trước</button>
+                    <button id="nextBtn" class="m-2 btn btn-warning">Sau</button>
+                </div>
+            </div>
             <tbody>
             <tr th:if="${tableList != null }" th:each="table : ${tableList}" class="m-2">
                 <td th:if="${table != null }" th:each="column : ${table}" style="height: 150px; width: 30px">
@@ -737,6 +742,30 @@
             location.reload()
         });
 
+       // JavaScript to handle date change on button click
+        document.addEventListener("DOMContentLoaded", function() {
+            const dateInput = document.getElementById("date");
+
+            // Get today's date if no date is set
+            if (!dateInput.value) {
+                dateInput.value = new Date().toISOString().split('T')[0];
+            }
+
+            document.getElementById("prevBtn").addEventListener("click", function() {
+                changeDate(-1); // Go to previous day
+            });
+
+            document.getElementById("nextBtn").addEventListener("click", function() {
+                changeDate(1); // Go to next day
+            });
+
+            function changeDate(offset) {
+                let date = new Date(dateInput.value);
+                date.setDate(date.getDate() + offset); // Adjust date by offset days
+                dateInput.value = date.toISOString().split('T')[0]; // Set new date in 'yyyy-mm-dd' format
+                document.getElementById("selectDateForm").submit(); // Submit form to refresh the results
+            }
+        });
 
 
 </script>
