@@ -12,11 +12,18 @@ import java.util.List;
 @Repository
 public interface ResultRepository extends JpaRepository<Result, Long> {
 
-    @Query(value = "SELECT * FROM result WHERE DATE(created_at) = :date", nativeQuery = true) // '2024-10-20'
+    @Query(value = "SELECT * FROM result WHERE DATE(created_at) = :date", nativeQuery = true)
+        // '2024-10-20'
     List<Result> findByDate(@Param("date") String date);
 
     @Query(value = "SELECT * FROM result WHERE server_no = 1 AND DATE(created_at) = :date AND TIME(created_at) BETWEEN :startTime AND :endTime", nativeQuery = true)
     List<Result> findByDateAndTimeByServer1(@Param("date") String date, @Param("startTime") String startTime, @Param("endTime") String endTime);
+
+    @Query(value = "SELECT * FROM result WHERE server_no = 2 AND DATE(created_at) = :date AND TIME(created_at) BETWEEN :startTime AND :endTime", nativeQuery = true)
+    List<Result> findByDateAndTimeByServer2(@Param("date") String date, @Param("startTime") String startTime, @Param("endTime") String endTime);
+
+    @Query(value = "SELECT * FROM result WHERE server_no = 3 AND DATE(created_at) = :date AND TIME(created_at) BETWEEN :startTime AND :endTime", nativeQuery = true)
+    List<Result> findByDateAndTimeByServer3(@Param("date") String date, @Param("startTime") String startTime, @Param("endTime") String endTime);
 
     @Query(value = "SELECT * FROM result WHERE DATE(created_at) = :date AND TIME(created_at) BETWEEN :startTime AND :endTime", nativeQuery = true)
     List<Result> findByDateAndTimeByAllServer(@Param("date") String date, @Param("startTime") String startTime, @Param("endTime") String endTime);

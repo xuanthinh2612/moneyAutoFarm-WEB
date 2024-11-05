@@ -36,6 +36,8 @@ public class ResultService {
     public OverviewDto getOverviewInfo(String date, String startTime, String endTime, int overByNumber) {
         OverviewDto overview = new OverviewDto();
         List<Result> totalResultByServer1 = resultRepository.findByDateAndTimeByServer1(date, startTime, endTime);
+        List<Result> totalResultByServer2 = resultRepository.findByDateAndTimeByServer2(date, startTime, endTime);
+        List<Result> totalResultByServer3 = resultRepository.findByDateAndTimeByServer3(date, startTime, endTime);
         List<Result> totalResult = resultRepository.findByDateAndTimeByAllServer(date, startTime, endTime);
 
         String winAmount;
@@ -52,6 +54,35 @@ public class ResultService {
             }
         }
 
+        int totalBetAmount1 = 0;
+        int totalWinAmount1 = 0;
+        for (Result r :
+                totalResultByServer1) {
+            totalBetAmount1 += r.getBetAmount();
+            totalWinAmount1 += r.getWinAmount();
+        }
+
+        int totalBetAmount2 = 0;
+        int totalWinAmount2 = 0;
+        for (Result r :
+                totalResultByServer2) {
+            totalBetAmount2 += r.getBetAmount();
+            totalWinAmount2 += r.getWinAmount();
+        }
+
+        int totalBetAmount3 = 0;
+        int totalWinAmount3 = 0;
+        for (Result r :
+                totalResultByServer3) {
+            totalBetAmount3 += r.getBetAmount();
+            totalWinAmount3 += r.getWinAmount();
+        }
+
+        overview.setWinNetServer1(totalWinAmount1 - totalBetAmount1);
+        overview.setWinNetServer2(totalWinAmount2 - totalBetAmount2);
+        overview.setWinNetServer3(totalWinAmount3 - totalBetAmount3);
+
+        // check for result of server1 and show in result table
         int changeConstantlyNumber = 0;
         int constantlyChangeCount = 0;
         int outOfCoverNumber = 0;

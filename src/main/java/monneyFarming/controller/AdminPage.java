@@ -54,9 +54,7 @@ public class AdminPage {
         model.addAttribute("startTime", startTime);
         model.addAttribute("endTime", endTime);
         model.addAttribute("tableList", tableList);
-        // set up data to show
-        int overByNumber = getInitValue1().getMaxLoseNum() - 1; // maxLoseNumber - 1 = coverAbleNumber.(EX: maxLoseNumber = 7 -> cover 6 time
-        OverviewDto overview = resultService.getOverviewInfo(date, startTime, endTime, overByNumber);
+        OverviewDto overview = resultService.getOverviewInfo(date, startTime, endTime, 6);
         model.addAttribute("overview", overview);
 
         return "index";
@@ -66,6 +64,7 @@ public class AdminPage {
     public String homePage(@RequestParam("date") String date,
                            @RequestParam("startTime") String startTime,
                            @RequestParam("endTime") String endTime,
+                           @RequestParam("overByNumber") int overByNumber,
                            Model model) {
         if (StringUtils.hasText(date) && StringUtils.hasText(startTime) && StringUtils.hasText(endTime)) {
 
@@ -75,7 +74,6 @@ public class AdminPage {
             List<List<List<Result>>> tableList = resultService.handleListResult(date, startTime, endTime);
             model.addAttribute("tableList", tableList);
             // set up data to show
-            int overByNumber = getInitValue1().getMaxLoseNum() - 1; // maxLoseNumber - 1 = coverAbleNumber.(EX: maxLoseNumber = 7 -> cover 6 time
             OverviewDto overview = resultService.getOverviewInfo(date, startTime, endTime, overByNumber);
             model.addAttribute("overview", overview);
         }

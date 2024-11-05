@@ -12,6 +12,9 @@ public class OverviewDto {
     int changeConstantlyNumber;
     int totalWinAmount;
     int totalBetAmount;
+    int winNetServer1;
+    int winNetServer2;
+    int winNetServer3;
 
     public int getBiggestAmount() {
         return biggestAmount;
@@ -75,5 +78,29 @@ public class OverviewDto {
 
     public void setTotalBetAmount(int totalBetAmount) {
         this.totalBetAmount = totalBetAmount;
+    }
+
+    public int getWinNetServer1() {
+        return winNetServer1;
+    }
+
+    public void setWinNetServer1(int winNetServer1) {
+        this.winNetServer1 = winNetServer1;
+    }
+
+    public int getWinNetServer2() {
+        return winNetServer2;
+    }
+
+    public void setWinNetServer2(int winNetServer2) {
+        this.winNetServer2 = winNetServer2;
+    }
+
+    public int getWinNetServer3() {
+        return winNetServer3;
+    }
+
+    public void setWinNetServer3(int winNetServer3) {
+        this.winNetServer3 = winNetServer3;
     }
 }

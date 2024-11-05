@@ -78,8 +78,6 @@
             visibility: hidden;
         }
 
-
-
     </style>
     <!-- Favicon-->
     <meta charset="UTF-8">
@@ -574,7 +572,7 @@
             </div>
         </div>
 
-        <form class="mb-5" action="/" method="POST" id="selectDateForm">
+        <form class="mb-2" action="/" method="POST" id="selectDateForm">
             <div class="row">
                 <div class="col-1 p-2">
                     <p>
@@ -594,7 +592,6 @@
                         </svg>
                     </p>
                 </div>
-
                 <!-- Date Input -->
                 <div class="col-2 p-2">
                     <input
@@ -626,11 +623,21 @@
                             class="form-control"
                             style="width: min-content;"/>
                 </div>
-                <div class="col-1 p-2">
+                <div class="col-2 p-2">
+                    OverByNumber:&nbsp;
+                    <label class="w-25">
+                        <select name="overByNumber" class="form-control">
+                            <option th:each="num : ${#numbers.sequence(3, 15)}"
+                                    th:value="${num}"
+                                    th:text="${num}"
+                                    th:selected="${num == overview.overByNumber}">
+                            </option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col-2 p-2 d-flex justify-content-end">
                     <!-- Submit Button -->
                     <button type="submit" class="btn btn-success">Search</button>
-                </div>
-                <div class="col-3 p-2">
                 </div>
                 <div class="col-8 pt-5">
                     <b>Total: <span th:text="${overview.totalNumber}"></span></b>&nbsp;&nbsp;&nbsp;
@@ -642,32 +649,32 @@
                         <span th:text="${overview.outOfCoverNumber}"></span>&nbsp;Bệt&nbsp;---
                         <span th:text="${overview.changeConstantlyNumber}"></span>&nbsp;Bẻ</b>&nbsp;&nbsp;
                 </div>
-            </div>
-        </form>
-        <table class="table table-bordered">
-            <div class="row">
-                <div class="col-12 d-flex justify-content-end">
+                <div class="col-4 d-flex justify-content-end pt-3">
                     <button id="prevBtn" class="m-2 btn btn-secondary">Trước</button>
                     <button id="nextBtn" class="m-2 btn btn-warning">Sau</button>
                 </div>
             </div>
+        </form>
+        <table class="table table-bordered">
             <tbody>
             <tr th:if="${tableList != null }" th:each="table : ${tableList}" class="m-2">
                 <td th:if="${table != null }" th:each="column : ${table}" style="height: 150px; width: 30px">
-                    <span th:each="cell : ${column}">
-                        <svg th:if="${cell.getBetResult == 'tai'}" class="svg-icon" xmlns="http://www.w3.org/2000/svg"
-                             viewBox="0 0 512 512">
-                            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/>
-                        </svg>
-                        <svg th:if="${cell.getBetResult == 'xiu'}" class="svg-icon" xmlns="http://www.w3.org/2000/svg"
-                             viewBox="0 0 512 512">
-                            <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/>
-                        </svg>
-                        <svg th:if="${cell.getBetResult == 'can_not_detected'}" xmlns="http://www.w3.org/2000/svg"
-                             viewBox="0 0 512 512">
-                            <path d="M448 256c0-106-86-192-192-192l0 384c106 0 192-86 192-192zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/>
-                        </svg>
-                    </span>
+                        <span th:each="cell : ${column}">
+                            <svg th:if="${cell.getBetResult == 'tai'}" class="svg-icon"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 viewBox="0 0 512 512">
+                                <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/>
+                            </svg>
+                            <svg th:if="${cell.getBetResult == 'xiu'}" class="svg-icon"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 viewBox="0 0 512 512">
+                                <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/>
+                            </svg>
+                            <svg th:if="${cell.getBetResult == 'can_not_detected'}" xmlns="http://www.w3.org/2000/svg"
+                                 viewBox="0 0 512 512">
+                                <path d="M448 256c0-106-86-192-192-192l0 384c106 0 192-86 192-192zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/>
+                            </svg>
+                        </span>
                 </td>
             </tr>
             <tr th:if="${tableList.size() == 0 }" class="m-2">
@@ -683,8 +690,12 @@
         <p class="m-0 text-center text-white">Tài Xỉu Master</p>
         <div class="col-12">
             <b class="m-0 text-center text-white">Total: <span th:text="${overview.totalNumber}"></span></b>&nbsp;&nbsp;&nbsp;
-            <b class="m-0 text-center text-white">Win-NET: <span class="text-danger"
-                                                                 th:text="${overview.winAmount}"></span></b>&nbsp;&nbsp;
+            <b class="m-0 text-center text-white">
+                Win-NET: <span class="text-danger" th:text="${overview.winAmount}"></span>
+                (S1:&nbsp;<span th:text="${overview.winNetServer1}"></span>
+                S2:&nbsp;<span th:text="${overview.winNetServer2}"></span>
+                S3:&nbsp;<span th:text="${overview.winNetServer3}"></span>)
+            </b>&nbsp;&nbsp;
             <b class="m-0 text-center text-white">TotalWin: <span th:text="${overview.totalWinAmount}"></span></b>&nbsp;&nbsp;
             <b class="m-0 text-center text-white">TotalBet: <span th:text="${overview.totalBetAmount}"></span></b>&nbsp;&nbsp;
             <b class="m-0 text-center text-white">Biggest: <span th:text="${overview.biggestAmount}"></span></b>&nbsp;&nbsp;
@@ -766,8 +777,6 @@
                 document.getElementById("selectDateForm").submit(); // Submit form to refresh the results
             }
         });
-
-
 </script>
 </body>
 </html>
