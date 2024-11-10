@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static monneyFarming.herlper.CommonConst.TAI;
+import static monneyFarming.herlper.CommonConst.XIU;
+
 @Service
 public class ResultService {
     @Autowired
@@ -54,12 +57,23 @@ public class ResultService {
             }
         }
 
+        int taiNumber = 0;
+        int xiuNumber = 0;
+        int undefinedNumber = 0;
+
         int totalBetAmount1 = 0;
         int totalWinAmount1 = 0;
         for (Result r :
                 totalResultByServer1) {
             totalBetAmount1 += r.getBetAmount();
             totalWinAmount1 += r.getWinAmount();
+            if (r.getBetResult().equals(TAI)) {
+                taiNumber++;
+            } else if (r.getBetResult().equals(XIU)) {
+                xiuNumber++;
+            } else {
+                undefinedNumber++;
+            }
         }
 
         int totalBetAmount2 = 0;
@@ -121,6 +135,9 @@ public class ResultService {
         overview.setBiggestAmount(biggestAmount);
         overview.setTotalNumber(totalResultByServer1.size());
         overview.setWinAmount(winAmount);
+        overview.setTaiNumber(taiNumber);
+        overview.setXiuNumber(xiuNumber);
+        overview.setUndefinedNumber(undefinedNumber);
 
         return overview;
     }

@@ -15,6 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import static monneyFarming.herlper.SimulatedService.*;
+
 @Controller
 @RequestMapping("/")
 public class AdminPage {
@@ -76,6 +78,14 @@ public class AdminPage {
             // set up data to show
             OverviewDto overview = resultService.getOverviewInfo(date, startTime, endTime, overByNumber);
             model.addAttribute("overview", overview);
+            List<Result> resultList = resultService.findByDateAndTimeByServer1(date, startTime, endTime);
+
+            simulatedBetByFibonacci(resultList, overByNumber, model);
+            simulatedBetByMartingale(resultList, overByNumber, model);
+            simulatedBetByParoliBreak(resultList, overByNumber, model);
+            simulatedBetByParoli(resultList, overByNumber, model);
+            simulatedBetByMixed(resultList, overByNumber, model);
+            simulatedBetByFollowResult(resultList, overByNumber, model);
         }
 
         return "index";
@@ -119,6 +129,5 @@ public class AdminPage {
         return "redirect:/";
 
     }
-
 
 }

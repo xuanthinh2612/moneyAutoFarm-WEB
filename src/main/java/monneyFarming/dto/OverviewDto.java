@@ -16,6 +16,11 @@ public class OverviewDto {
     int winNetServer2;
     int winNetServer3;
 
+    int taiNumber;
+    int xiuNumber;
+    int undefinedNumber;
+
+
     public int getBiggestAmount() {
         return biggestAmount;
     }
@@ -102,5 +107,29 @@ public class OverviewDto {
 
     public void setWinNetServer3(int winNetServer3) {
         this.winNetServer3 = winNetServer3;
+    }
+
+    public int getTaiNumber() {
+        return taiNumber;
+    }
+
+    public void setTaiNumber(int taiNumber) {
+        this.taiNumber = taiNumber;
+    }
+
+    public int getXiuNumber() {
+        return xiuNumber;
+    }
+
+    public void setXiuNumber(int xiuNumber) {
+        this.xiuNumber = xiuNumber;
+    }
+
+    public int getUndefinedNumber() {
+        return undefinedNumber;
+    }
+
+    public void setUndefinedNumber(int undefinedNumber) {
+        this.undefinedNumber = undefinedNumber;
     }
 }
