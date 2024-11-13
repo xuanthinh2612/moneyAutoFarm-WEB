@@ -325,6 +325,7 @@ public class SimulatedService {
         model.addAttribute("totalTaiBetAmountParoliBreak", totalTaiBetAmount);
         model.addAttribute("totalXiuBetAmountParoliBreak", totalXiuBetAmount);
         model.addAttribute("NETParoliBreak", totalXiuWinAmount + totalTaiWinAmount - totalTaiBetAmount - totalXiuBetAmount);
+        model.addAttribute("actualNETParoliBreak", (int) Math.round(totalXiuWinAmount * 0.99 + totalTaiWinAmount * 0.99 - totalTaiBetAmount - totalXiuBetAmount));
         model.addAttribute("maxBetAmountTaiParoliBreak", maxBetAmountTai);
         model.addAttribute("maxBetAmountXiuParoliBreak", maxBetAmountXiu);
     }
@@ -402,6 +403,7 @@ public class SimulatedService {
         model.addAttribute("totalTaiBetAmountParoli", totalTaiBetAmount);
         model.addAttribute("totalXiuBetAmountParoli", totalXiuBetAmount);
         model.addAttribute("NETParoli", totalXiuWinAmount + totalTaiWinAmount - totalTaiBetAmount - totalXiuBetAmount);
+        model.addAttribute("actualNETParoli", (int) Math.round(totalXiuWinAmount * 0.99 + totalTaiWinAmount * 0.99 - totalTaiBetAmount - totalXiuBetAmount));
         model.addAttribute("maxBetAmountTaiParoli", maxBetAmountTai);
         model.addAttribute("maxBetAmountXiuParoli", maxBetAmountXiu);
     }

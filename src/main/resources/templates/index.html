@@ -607,7 +607,8 @@
                 </div>
                 <div class="col-2 p-2 d-flex justify-content-end">
                     <!-- Submit Button -->
-                    <button type="submit" class="btn btn-success">Search</button>
+                    <button id="resetTime" type="button" class="btn btn-info m-1">ResetTime</button>
+                    <button type="submit" class="btn btn-success m-1">Search</button>
                 </div>
                 <div class="col-8 pt-5">
                     <b>Total: <span th:text="${overview.totalNumber}"></span></b>&nbsp;&nbsp;&nbsp;
@@ -629,7 +630,8 @@
             <tbody>
             <tr th:if="${tableList != null }" th:each="table : ${tableList}" class="m-2">
                 <td th:if="${table != null }" th:each="column : ${table}" style="height: 150px; width: 30px">
-                        <span th:each="cell : ${column}">
+                        <span th:each="cell : ${column}" data-toggle="tooltip" data-placement="top"
+                              th:title="${cell.getCreatedTime()}">
                             <svg th:if="${cell.getBetResult == 'tai'}" class="svg-icon"
                                  xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 512 512">
@@ -724,8 +726,11 @@
                 <td><b class="text-white"><span th:text="${totalTaiBetAmountParoli}"></span> </b></td>
                 <td><b class="text-white"><span th:text="${totalXiuBetAmountParoli}"></span> </b></td>
                 <td><b class="text-white"><span th:text="${maxBetAmountTaiParoli}"></span> </b></td>
-                <td><b class="text-white"><span th:text="${maxBetAmountXiuParoli}"></span> </b></td>
-                <td><b class="text-white"><span th:text="${NETParoli}"></span> </b></td>
+                <td><b class="text-white"><span th:text="${maxBetAmountXiuParoli}"></span></b></td>
+                <td><b class="text-white"><span th:text="${NETParoli}"></span>
+                        (<span th:text="${actualNETParoli}"></span>)
+                    </b>
+                </td>
             </tr>
             <tr>
                 <td><b class="text-white">Paroli (break)</b></td>
@@ -735,7 +740,9 @@
                 <td><b class="text-white"><span th:text="${totalXiuBetAmountParoliBreak}"></span> </b></td>
                 <td><b class="text-white"><span th:text="${maxBetAmountTaiParoliBreak}"></span> </b></td>
                 <td><b class="text-white"><span th:text="${maxBetAmountXiuParoliBreak}"></span> </b></td>
-                <td><b class="text-white"><span th:text="${NETParoliBreak}"></span> </b></td>
+                <td><b class="text-white"><span th:text="${NETParoliBreak}"></span>
+                    (<span th:text="${actualNETParoliBreak}"></span>) </b>
+                </td>
             </tr>
             <tr>
                 <td><b class="text-white">Follow Result</b></td>
@@ -824,6 +831,13 @@
             }
         });
 
+        // Reset start-end time
+        document.getElementById('resetTime').addEventListener('click', function () {
+            // Set start time to 12:00AM
+            document.getElementById('startTime').value = "00:00";
+            // Set end time to 11:59PM
+            document.getElementById('endTime').value = "23:59:59";
+        });
 </script>
 </body>
 </html>

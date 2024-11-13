@@ -3,7 +3,9 @@ package monneyFarming.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
@@ -31,4 +33,14 @@ public class Result {
 
     @Column
     private LocalDateTime createdAt;
+
+    @Transient
+    public String getCreatedTime() {
+
+        // Define the desired format
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+        // Format the LocalDateTime
+        return this.getCreatedAt().format(timeFormatter);
+    }
 }
