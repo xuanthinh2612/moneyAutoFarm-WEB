@@ -610,17 +610,28 @@
                     <button id="resetTime" type="button" class="btn btn-info m-1">ResetTime</button>
                     <button type="submit" class="btn btn-success m-1">Search</button>
                 </div>
-                <div class="col-8 pt-5">
+                <div class="col-10 pt-5">
                     <b>Total: <span th:text="${overview.totalNumber}"></span></b>&nbsp;&nbsp;&nbsp;
                     <b>Win-NET: <span class="text-danger" th:text="${overview.winAmount}"></span></b>&nbsp;&nbsp;
-                    <b>TotalWin: <span th:text="${overview.totalWinAmount}"></span></b>&nbsp;&nbsp;
-                    <b>TotalBet: <span th:text="${overview.totalBetAmount}"></span></b>&nbsp;&nbsp;
-                    <b>Biggest: <span th:text="${overview.biggestAmount}"></span></b>&nbsp;&nbsp;
+                    <b>
+                        Change-<span th:text="${overview.totalChangeNumber}"></span>/
+                        1-<span th:text="${overview.number1}"></span>/
+                        2-<span th:text="${overview.number2}"></span>/
+                        3-<span th:text="${overview.number3}"></span>/
+                        4-<span th:text="${overview.number4}"></span>/
+                        5-<span th:text="${overview.number5}"></span>/
+                        6-<span th:text="${overview.number6}"></span>/
+                        7-<span th:text="${overview.number7}"></span>/
+                        8-<span th:text="${overview.number8}"></span>/
+                        9-<span th:text="${overview.number9}"></span>/
+                        10-<span th:text="${overview.number10}"></span>/
+                        11↑-<span th:text="${overview.number11AndOver}"></span>/
+                    </b>&nbsp;&nbsp;
                     <b class="m-0 text-center">Over&nbsp;<span th:text="${overview.overByNumber}"></span>:&nbsp;&nbsp;
                         <span th:text="${overview.outOfCoverNumber}"></span>&nbsp;Bệt&nbsp;---
                         <span th:text="${overview.changeConstantlyNumber}"></span>&nbsp;Bẻ</b>&nbsp;&nbsp;
                 </div>
-                <div class="col-4 d-flex justify-content-end pt-3">
+                <div class="col-2 d-flex justify-content-end pt-3">
                     <button id="prevBtn" class="m-2 btn btn-secondary">Trước</button>
                     <button id="nextBtn" class="m-2 btn btn-warning">Sau</button>
                 </div>

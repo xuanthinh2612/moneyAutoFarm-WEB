@@ -102,6 +102,20 @@ public class ResultService {
         int outOfCoverNumber = 0;
         int constantlyCount = 1; // start count from 1
 
+        // count for number of constantly result
+        int totalChangeNumber = 1;
+        int number1 = 1;
+        int number2 = 0;
+        int number3 = 0;
+        int number4 = 0;
+        int number5 = 0;
+        int number6 = 0;
+        int number7 = 0;
+        int number8 = 0;
+        int number9 = 0;
+        int number10 = 0;
+        int number11AndOver = 0;
+
         for (int i = 0; i < totalResultByServer1.size() - 1; i++) {
             Result result1 = totalResultByServer1.get(i);
             Result result2 = totalResultByServer1.get(i + 1);
@@ -118,14 +132,30 @@ public class ResultService {
 
                 // count if bet result change
                 constantlyChangeCount++;
+                totalChangeNumber++;
 
                 if (constantlyCount > overByNumber) {
                     outOfCoverNumber++;
                 }
+                switch (constantlyCount) {
+                    case 1 -> number1++;
+                    case 2 -> number2++;
+                    case 3 -> number3++;
+                    case 4 -> number4++;
+                    case 5 -> number5++;
+                    case 6 -> number6++;
+                    case 7 -> number7++;
+                    case 8 -> number8++;
+                    case 9 -> number9++;
+                    case 10 -> number10++;
+                    default -> number11AndOver++;
+                }
                 constantlyCount = 1;
             }
         }
-        winAmount = NumberFormat.getNumberInstance(Locale.US).format(totalWinAmount - totalBetAmount);
+
+        winAmount = NumberFormat.getNumberInstance(Locale.US).
+                format(totalWinAmount - totalBetAmount);
 
         overview.setOverByNumber(overByNumber); // max lose number
         overview.setTotalWinAmount(totalWinAmount); // Total Win
@@ -138,6 +168,20 @@ public class ResultService {
         overview.setTaiNumber(taiNumber);
         overview.setXiuNumber(xiuNumber);
         overview.setUndefinedNumber(undefinedNumber);
+        // set result count
+        overview.setNumber1(number1);
+        overview.setNumber2(number2);
+        overview.setNumber3(number3);
+        overview.setNumber4(number4);
+        overview.setNumber5(number5);
+        overview.setNumber6(number6);
+        overview.setNumber7(number7);
+        overview.setNumber8(number8);
+        overview.setNumber9(number9);
+        overview.setNumber10(number10);
+        overview.setNumber11AndOver(number11AndOver);
+        overview.setTotalChangeNumber(totalChangeNumber);
+
 
         return overview;
     }

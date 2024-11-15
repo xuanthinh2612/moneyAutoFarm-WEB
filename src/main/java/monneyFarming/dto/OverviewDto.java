@@ -1,9 +1,15 @@
 package monneyFarming.dto;
 
-public class OverviewDto {
-    public OverviewDto() {
-    }
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class OverviewDto {
     String winAmount;
     int totalNumber;
     int biggestAmount;
@@ -15,121 +21,20 @@ public class OverviewDto {
     int winNetServer1;
     int winNetServer2;
     int winNetServer3;
-
     int taiNumber;
     int xiuNumber;
     int undefinedNumber;
 
-
-    public int getBiggestAmount() {
-        return biggestAmount;
-    }
-
-    public void setBiggestAmount(int biggestAmount) {
-        this.biggestAmount = biggestAmount;
-    }
-
-    public int getTotalNumber() {
-        return totalNumber;
-    }
-
-    public void setTotalNumber(int totalNumber) {
-        this.totalNumber = totalNumber;
-    }
-
-    public String getWinAmount() {
-        return winAmount;
-    }
-
-    public void setWinAmount(String winAmount) {
-        this.winAmount = winAmount;
-    }
-
-    public int getOutOfCoverNumber() {
-        return outOfCoverNumber;
-    }
-
-    public void setOutOfCoverNumber(int outOfCoverNumber) {
-        this.outOfCoverNumber = outOfCoverNumber;
-    }
-
-    public int getOverByNumber() {
-        return overByNumber;
-    }
-
-    public void setOverByNumber(int overByNumber) {
-        this.overByNumber = overByNumber;
-    }
-
-    public int getChangeConstantlyNumber() {
-        return changeConstantlyNumber;
-    }
-
-    public void setChangeConstantlyNumber(int changeConstantlyNumber) {
-        this.changeConstantlyNumber = changeConstantlyNumber;
-    }
-
-    public int getTotalWinAmount() {
-        return totalWinAmount;
-    }
-
-    public void setTotalWinAmount(int totalWinAmount) {
-        this.totalWinAmount = totalWinAmount;
-    }
-
-    public int getTotalBetAmount() {
-        return totalBetAmount;
-    }
-
-    public void setTotalBetAmount(int totalBetAmount) {
-        this.totalBetAmount = totalBetAmount;
-    }
-
-    public int getWinNetServer1() {
-        return winNetServer1;
-    }
-
-    public void setWinNetServer1(int winNetServer1) {
-        this.winNetServer1 = winNetServer1;
-    }
-
-    public int getWinNetServer2() {
-        return winNetServer2;
-    }
-
-    public void setWinNetServer2(int winNetServer2) {
-        this.winNetServer2 = winNetServer2;
-    }
-
-    public int getWinNetServer3() {
-        return winNetServer3;
-    }
-
-    public void setWinNetServer3(int winNetServer3) {
-        this.winNetServer3 = winNetServer3;
-    }
-
-    public int getTaiNumber() {
-        return taiNumber;
-    }
-
-    public void setTaiNumber(int taiNumber) {
-        this.taiNumber = taiNumber;
-    }
-
-    public int getXiuNumber() {
-        return xiuNumber;
-    }
-
-    public void setXiuNumber(int xiuNumber) {
-        this.xiuNumber = xiuNumber;
-    }
-
-    public int getUndefinedNumber() {
-        return undefinedNumber;
-    }
-
-    public void setUndefinedNumber(int undefinedNumber) {
-        this.undefinedNumber = undefinedNumber;
-    }
+    int totalChangeNumber;
+    int number1;
+    int number2;
+    int number3;
+    int number4;
+    int number5;
+    int number6;
+    int number7;
+    int number8;
+    int number9;
+    int number10;
+    int number11AndOver;
 }
